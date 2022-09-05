@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace Projekt
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Task1()
         {
             bool variableBool = true;
             Console.WriteLine(variableBool);
@@ -26,6 +27,8 @@ namespace Projekt
             Console.WriteLine(variableInt);
             uint variableUint = 4294967295u;
             Console.WriteLine(variableUint);
+            nint varibleNint = 12312;
+            Console.WriteLine(varibleNint);
             long variableLong = -1242346253453242314;
             Console.WriteLine(variableLong);
             ulong variableUlong = 12412352346345753566;
@@ -34,9 +37,12 @@ namespace Projekt
             Console.WriteLine(variableShort);
             ushort variableUshort = 12234;
             Console.WriteLine(variableUshort);
-            
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\n\nНажмите для продолжения");
             Console.ReadLine();
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
 
             int converted = 0;
             bool convertion = Convert.ToBoolean(converted);
@@ -51,19 +57,175 @@ namespace Projekt
 
             int first = 123;
             double second = first;
-            double third = (double)first;
+            //first = second;
+            first = (int)second;
+            Console.WriteLine(first);
+            double third = double.MaxValue;
+            first = (int)third;
+            Console.WriteLine("Ошибка:" + first);
 
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\n\nНажмите для продолжения");
             Console.ReadLine();
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
 
             int v = 12;
             object o = v;
             int v1 = (int)o;
+            //var sadf = null;
             var sadf = 123;
-            //sadf = "safd";
+            //sadf = "asdf";
             Console.WriteLine(sadf.GetType());
             int? nullable = null;
-            Console.WriteLine(nullable);
+            Console.WriteLine(nullable.HasValue);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\n\nНажмите для продолжения");
+            Console.ReadLine();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void Task2()
+        {
+            string first= "asdf";
+            string second = "ffsdfa";
+            Console.WriteLine(first==second);
+            Console.WriteLine(string.Compare(second, first));
+            string third = first + second;
+            Console.WriteLine(third);
+            Console.WriteLine(third.LastIndexOf("df"));
+            Console.WriteLine("До вставки: " + third);
+            third = third.Insert(2, "ВСТАВЛЕНО");
+            Console.WriteLine(third);
+            Console.WriteLine("Удалено: " + third.Remove(2, "ВСТАВЛЕНО".Length));
+            string polyndrom = "А роза упала на лапу Азора";
+            string[] mass = polyndrom.Split(' ');
+            foreach(string s in mass)
+            {
+                Console.WriteLine(s);
+            }
+            Console.WriteLine($"Первое слово: {first}, второе слово: {second}");
+            string empty = "";
+            string nun = null;
+            Console.WriteLine($"Пустая строка: {string.IsNullOrEmpty(empty)}\nВообще пустая строка жестб: {string.IsNullOrEmpty(nun)}");
+            Console.WriteLine(nun?.Length);
+            Console.WriteLine(nun ?? "Строки не существует");
+            StringBuilder stringBuilder = new StringBuilder("Динамично изменяющаяся строка");
+            stringBuilder.Insert(stringBuilder.Length / 2, "2");
+            stringBuilder.Append("3");
+            stringBuilder.Insert(0, "1");
+            Console.WriteLine(stringBuilder.ToString());
+        }
+        static void Task3()
+        {
+            int[,] matrix = new int[4, 4];
+            Random random = new Random();
+            
+            for(int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for(int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    matrix[i,j] = random.Next(0,9);
+                }
+            }
+            for(int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for(int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i,j] + "   ");
+                }
+                Console.Write("\n");
+            }
+            string[] strings = { "asdf", "ghjk", "l;'z", "xcvb" };
+            foreach(string s in strings)
+            {
+                Console.WriteLine(s);
+            }
+            Console.WriteLine(strings.Length + "\nВведите номер строки, которую хотите изменить");
+            int index = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите строку, которую хотите включить в массив");
+            strings[index] = Console.ReadLine();
+            foreach(string s in strings)
+            {
+                Console.WriteLine(s);
+            }
+            Console.Write("\n");
+            Console.WriteLine("Заполните массив восмью элементами:");
+            int[][] ladder = new int[3][];
+            ladder[0] = new int[2];
+            ladder[1] = new int[3];
+            ladder[2] = new int[3];
+            for(int i = 0; i < ladder.Length; i++)
+            {
+                for( int j = 0; j < ladder[i].Length; j++)
+                {
+                    int.TryParse(Console.ReadLine(), out ladder[i][j]);
+                }
+            }
+            Console.Write("\n");
+            for (int i = 0; i < ladder.Length; i++)
+            {
+                for(int j = 0; j < ladder[i].Length; j++)
+                {
+                    Console.Write(ladder[i][j] + "  ");
+                }
+                Console.Write("\n");
+            }
+
+            var vars = new int[4];
+            var str = "asdfasdf";
+        }
+        static void Task4()
+        {
+            (int a, string b, char _, string _, ulong e) = (32, "qewr", 'f', "asdf", 18446744073709551615uL);
+            Console.WriteLine($"{a}, {b}, {e}");
+            var tuple = (f:980234,g: "asdf");
+            Console.WriteLine(tuple.ToString() + " " + tuple.f + " " + tuple.g);
+            //tuple == t1;
+            var tpl = (980234, "asdf");
+            Console.WriteLine(tuple == tpl);
+        }
+        static void Main(string[] args)
+        {
+            static (int, int, int, char) local(int[] mass, string str)
+            {
+                var tuple = (mass.Max(), mass.Min(), mass.Sum(), str[0]);
+                return tuple;
+            }
+            static int? check()
+            {
+                checked
+                {
+                    try
+                    {
+                        int max = int.MaxValue;
+                        max++;
+                        return max;
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+            static int? uncheck()
+            {
+                unchecked
+                {
+                    int max = int.MaxValue;
+                    max++;
+                    return max;
+                }
+            }
+            //Task1();
+            //Task2();
+            //Task3();
+            Task4();
+            int[] mass = { 54, 3, 45 };
+            Console.WriteLine(local(mass, ":adfasd"));
+            Console.WriteLine(check());
+            Console.WriteLine(uncheck());
         }
     }
 }
