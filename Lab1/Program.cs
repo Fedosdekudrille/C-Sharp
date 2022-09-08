@@ -9,6 +9,10 @@ namespace Projekt
     {
         static void Task1()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Первое задание:\n\n");
+            Console.ForegroundColor = ConsoleColor.White;
+
             bool variableBool = true;
             Console.WriteLine(variableBool);
             byte variableByte = 255;
@@ -81,13 +85,17 @@ namespace Projekt
             Console.WriteLine(nullable.HasValue);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("\n\nНажмите для продолжения");
+            Console.Write("\n\nНажмите для перехода к следующему заданию");
             Console.ReadLine();
-            Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
         }
         static void Task2()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Clear();
+            Console.Write("Второе задание:\n\n");
+            Console.ForegroundColor = ConsoleColor.White;
+
             string first= "asdf";
             string second = "ffsdfa";
             Console.WriteLine(first==second);
@@ -116,9 +124,19 @@ namespace Projekt
             stringBuilder.Append("3");
             stringBuilder.Insert(0, "1");
             Console.WriteLine(stringBuilder.ToString());
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\n\nНажмите для перехода к следующему заданию");
+            Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
         }
         static void Task3()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Clear();
+            Console.Write("Третье задание:\n\n");
+            Console.ForegroundColor = ConsoleColor.White;
+
             int[,] matrix = new int[4, 4];
             Random random = new Random();
             
@@ -175,9 +193,19 @@ namespace Projekt
 
             var vars = new int[4];
             var str = "asdfasdf";
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\n\nНажмите для перехода к следующему заданию");
+            Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
         }
         static void Task4()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Clear();
+            Console.Write("Четвёртое задание:\n\n");
+            Console.ForegroundColor = ConsoleColor.White;
+
             (int a, string b, char _, string _, ulong e) = (32, "qewr", 'f', "asdf", 18446744073709551615uL);
             Console.WriteLine($"{a}, {b}, {e}");
             var tuple = (f:980234,g: "asdf");
@@ -185,6 +213,11 @@ namespace Projekt
             //tuple == t1;
             var tpl = (980234, "asdf");
             Console.WriteLine(tuple == tpl);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\n\nНажмите для перехода к следующему заданию");
+            Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
         }
         static void Main(string[] args)
         {
@@ -218,9 +251,9 @@ namespace Projekt
                     return max;
                 }
             }
-            //Task1();
-            //Task2();
-            //Task3();
+            Task1();
+            Task2();
+            Task3();
             Task4();
             int[] mass = { 54, 3, 45 };
             Console.WriteLine(local(mass, ":adfasd"));
